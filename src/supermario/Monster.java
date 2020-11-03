@@ -28,7 +28,7 @@ class SuperMario extends Monster{
 
     public SuperMario(){
         this.name = "SuperMario";
-        this.numOfLives = 2;
+        this.numOfLives = 3;
         this.agility = 10;
         this.intelligence = 10;
         this.strength = 10;

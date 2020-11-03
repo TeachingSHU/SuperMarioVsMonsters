@@ -12,6 +12,7 @@ class FightBase {
     public int numOfMonsters;
     public SuperMario superMario;
     public ArrayList<Monster> queueMonsters;
+    public int sizeOfMonsterQueue;
 
     public void fightAndAfterProcessing(int roundOfGame){
         int numKilled = fight();
@@ -31,7 +32,7 @@ class FightBase {
     }
 
     public void fillInMonsters(int roundOfGame){
-        for(int i = 0; i < this.numOfMonsters; i ++){
+        for(int i = queueMonsters.size(); i < this.sizeOfMonsterQueue; i ++){
             int randomChoice = (new Random()).nextInt(3);
             switch (randomChoice) {
                 case 0:
@@ -50,7 +51,6 @@ class FightBase {
 
 class Fight1vs1 extends FightBase {
     public Monster monster_1;
-    public int sizeOfMonsterQueue;
 
     public Fight1vs1(SuperMario superMario,  ArrayList<Monster> queueMonsters, int sizeOfMonsterQueue){
         this.superMario = superMario;

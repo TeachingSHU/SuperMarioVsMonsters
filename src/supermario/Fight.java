@@ -12,6 +12,7 @@ class FightBase {
     public int numOfMonsters;
     public SuperMario superMario;
     public ArrayList<Monster> queueMonsters;
+
     public void fightAndAfterProcessing(int roundOfGame){
         int numKilled = fight();
         if(numKilled == this.numOfMonsters){
@@ -32,14 +33,16 @@ class FightBase {
     public void fillInMonsters(int roundOfGame){
         for(int i = 0; i < this.numOfMonsters; i ++){
             int randomChoice = (new Random()).nextInt(3);
-            if(randomChoice == 0){
-                queueMonsters.add(new Dragon(roundOfGame));
-            }
-            if(randomChoice == 1){
-                queueMonsters.add(new Duck(roundOfGame));
-            }
-            if(randomChoice == 2){
-                queueMonsters.add(new Tortoise(roundOfGame));
+            switch (randomChoice) {
+                case 0:
+                    queueMonsters.add(new Dragon(roundOfGame));
+                    break;
+                case 1:
+                    queueMonsters.add(new Duck(roundOfGame));
+                    break;
+                case 2:
+                    queueMonsters.add(new Tortoise(roundOfGame));
+                    break;
             }
         }
     }

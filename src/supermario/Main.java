@@ -46,22 +46,26 @@ public class Main {
             catch (Exception e) {
                 System.out.println("Error: should input an integer: 1, 2, or 3");
             }
-            if(in == 1){
-                Fight1vs1 fight1vs1 = new Fight1vs1(superMario, queueMonsters, sizeOfMonsterQueue);
-                fight1vs1.fightAndAfterProcessing(roundOfGame);
-                roundOfGame ++;
+
+            switch (in) {
+                case 1:
+                    Fight1vs1 fight1vs1 = new Fight1vs1(superMario, queueMonsters, sizeOfMonsterQueue);
+                    fight1vs1.fightAndAfterProcessing(roundOfGame);
+                    roundOfGame ++;
+                    break;
+                case 2:
+                    Fight1vs2 fight1vs2 = new Fight1vs2(superMario, queueMonsters, sizeOfMonsterQueue);
+                    fight1vs2.fightAndAfterProcessing(roundOfGame);
+                    roundOfGame ++;
+                    break;
+                case 3:
+                    Fight1vs3 fight1vs3 = new Fight1vs3(superMario, queueMonsters, sizeOfMonsterQueue);
+                    fight1vs3.fightAndAfterProcessing(roundOfGame);
+                    roundOfGame ++;
+                    break;
+                default:
+                    System.out.println("Error: should input an integer: 1, 2, or 3");
             }
-            else if(in == 2){
-                Fight1vs2 fight1vs2 = new Fight1vs2(superMario, queueMonsters, sizeOfMonsterQueue);
-                fight1vs2.fightAndAfterProcessing(roundOfGame);
-                roundOfGame ++;
-            }
-            else if(in == 3){
-                Fight1vs3 fight1vs3 = new Fight1vs3(superMario, queueMonsters, sizeOfMonsterQueue);
-                fight1vs3.fightAndAfterProcessing(roundOfGame);
-                roundOfGame ++;
-            }
-            else System.out.println("Error: should input an integer: 1, 2, or 3");
         }
 
         System.out.println("\n\nSuper Mario is now dead. You have to improve your playing strategy!");

@@ -21,9 +21,14 @@ class Monster {
 class SuperMario extends Monster{
     public int numOfLives;
 
+//    public String name;
+//    public int strength; // 力量
+//    public int agility; // 敏捷
+//    public int intelligence;  //智力
+
     public SuperMario(){
         this.name = "SuperMario";
-        this.numOfLives = 3;
+        this.numOfLives = 2;
         this.agility = 10;
         this.intelligence = 10;
         this.strength = 10;

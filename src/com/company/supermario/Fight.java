@@ -11,7 +11,7 @@ import java.util.Random;
 class FightBase {
     public int numOfMonsters;
     public SuperMario superMario;
-    public ArrayList<Monster> monsters;
+    public ArrayList<Monster> queueMonsters;
     public void fightAndAfterProcessing(int roundOfGame){
         int numKilled = fight();
         if(numKilled == this.numOfMonsters){
@@ -33,13 +33,13 @@ class FightBase {
         for(int i = 0; i < this.numOfMonsters; i ++){
             int randomChoice = (new Random()).nextInt(3);
             if(randomChoice == 0){
-                monsters.add(new Dragon(roundOfGame));
+                queueMonsters.add(new Dragon(roundOfGame));
             }
             if(randomChoice == 1){
-                monsters.add(new Duck(roundOfGame));
+                queueMonsters.add(new Duck(roundOfGame));
             }
             if(randomChoice == 2){
-                monsters.add(new Tortoise(roundOfGame));
+                queueMonsters.add(new Tortoise(roundOfGame));
             }
         }
     }
@@ -49,12 +49,12 @@ class Fight1vs1 extends FightBase {
     public Monster monster_1;
     public int sizeOfMonsterQueue;
 
-    public Fight1vs1(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
+    public Fight1vs1(SuperMario superMario,  ArrayList<Monster> queueMonsters, int sizeOfMonsterQueue){
         this.superMario = superMario;
-        this.monsters = monsters;
+        this.queueMonsters = queueMonsters;
         this.numOfMonsters = 1;
         this.sizeOfMonsterQueue = sizeOfMonsterQueue;
-        this.monster_1 = monsters.remove(0);
+        this.monster_1 = queueMonsters.remove(0);
     }
 
     public int fight(){
@@ -68,10 +68,10 @@ class Fight1vs1 extends FightBase {
 
 class Fight1vs2 extends Fight1vs1 {
     public Monster monster_2;
-    public Fight1vs2(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
-        super(superMario, monsters, sizeOfMonsterQueue);
+    public Fight1vs2(SuperMario superMario,  ArrayList<Monster> queueMonsters, int sizeOfMonsterQueue){
+        super(superMario, queueMonsters, sizeOfMonsterQueue);
         this.numOfMonsters = 2;
-        this.monster_2 = monsters.remove(0);
+        this.monster_2 = queueMonsters.remove(0);
     }
 
     public int fight(){
@@ -86,10 +86,10 @@ class Fight1vs2 extends Fight1vs1 {
 
 class Fight1vs3 extends Fight1vs2 {
     public Monster monster_3;
-    public Fight1vs3(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
-        super(superMario, monsters, sizeOfMonsterQueue);
+    public Fight1vs3(SuperMario superMario,  ArrayList<Monster> queueMonsters, int sizeOfMonsterQueue){
+        super(superMario, queueMonsters, sizeOfMonsterQueue);
         this.numOfMonsters = 3;
-        this.monster_3 = monsters.remove(0);
+        this.monster_3 = queueMonsters.remove(0);
     }
 
     public int fight(){

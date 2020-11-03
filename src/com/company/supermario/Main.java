@@ -16,20 +16,20 @@ public class Main {
         int roundOfGame = 1;
         int sizeOfMonsterQueue = 3;
         SuperMario superMario = new SuperMario();
-        ArrayList<Monster> monsters = new ArrayList<>();
-        monsters.add(new Tortoise(roundOfGame));
-        monsters.add(new Duck(roundOfGame));
-        monsters.add(new Dragon(roundOfGame));
+        ArrayList<Monster> queueMonsters = new ArrayList<>();
+        queueMonsters.add(new Tortoise(roundOfGame));
+        queueMonsters.add(new Duck(roundOfGame));
+        queueMonsters.add(new Dragon(roundOfGame));
 
         while (superMario.isAlive()) {
             System.out.println("----------------  Round " + roundOfGame + " -----------------");
             System.out.println("We have those " + sizeOfMonsterQueue + " monsters and Super Mario: ");
             for(int i = sizeOfMonsterQueue - 1; i >= 0; i --){
                 System.out.println("Monster " + (i + 1) + "  : [S = "
-                        + monsters.get(i).strength + ", A = "
-                        + monsters.get(i).agility + ", I = "
-                        + monsters.get(i).intelligence + ", "
-                        + monsters.get(i).name + "]" );
+                        + queueMonsters.get(i).strength + ", A = "
+                        + queueMonsters.get(i).agility + ", I = "
+                        + queueMonsters.get(i).intelligence + ", "
+                        + queueMonsters.get(i).name + "]" );
             }
             System.out.println("SuperMario " +  ": [S = "
                     + superMario.strength + ", A = "
@@ -47,17 +47,17 @@ public class Main {
                 System.out.println("Error: should input an integer: 1, 2, or 3");
             }
             if(in == 1){
-                Fight1vs1 fight1vs1 = new Fight1vs1(superMario, monsters, sizeOfMonsterQueue);
+                Fight1vs1 fight1vs1 = new Fight1vs1(superMario, queueMonsters, sizeOfMonsterQueue);
                 fight1vs1.fightAndAfterProcessing(roundOfGame);
                 roundOfGame ++;
             }
             else if(in == 2){
-                Fight1vs2 fight1vs2 = new Fight1vs2(superMario, monsters, sizeOfMonsterQueue);
+                Fight1vs2 fight1vs2 = new Fight1vs2(superMario, queueMonsters, sizeOfMonsterQueue);
                 fight1vs2.fightAndAfterProcessing(roundOfGame);
                 roundOfGame ++;
             }
             else if(in == 3){
-                Fight1vs3 fight1vs3 = new Fight1vs3(superMario, monsters, sizeOfMonsterQueue);
+                Fight1vs3 fight1vs3 = new Fight1vs3(superMario, queueMonsters, sizeOfMonsterQueue);
                 fight1vs3.fightAndAfterProcessing(roundOfGame);
                 roundOfGame ++;
             }

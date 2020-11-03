@@ -1,0 +1,104 @@
+/*
+ @author: lunde chen
+ @email: lundechen@shu.edu.cn
+ */
+
+package com.company.supermario;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+class FightBase {
+    public int numOfMonsters;
+    public SuperMario superMario;
+    public ArrayList<Monster> monsters;
+    public void fightAndAfterProcessing(int roundOfGame){
+        int numKilled = fight();
+        if(numKilled == this.numOfMonsters){
+            System.out.println("\n\nSuper Mario won the fight against " + this.numOfMonsters + " monsters!");
+            this.superMario.growAfterAWin();
+        }
+        else {
+            this.superMario.numOfLives --;
+            System.out.println("\n\nSuper Mario lose the fight ... and now has only " + superMario.numOfLives + " lives!");
+        }
+        this.fillInMonsters(roundOfGame);
+    }
+
+    public int fight(){
+        return -1;
+    }
+
+    public void fillInMonsters(int roundOfGame){
+        for(int i = 0; i < this.numOfMonsters; i ++){
+            int randomChoice = (new Random()).nextInt(3);
+            if(randomChoice == 0){
+                monsters.add(new Dragon(roundOfGame));
+            }
+            if(randomChoice == 1){
+                monsters.add(new Duck(roundOfGame));
+            }
+            if(randomChoice == 2){
+                monsters.add(new Tortoise(roundOfGame));
+            }
+        }
+    }
+}
+
+class Fight1vs1 extends FightBase {
+    public Monster monster_1;
+    public int sizeOfMonsterQueue;
+
+    public Fight1vs1(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
+        this.superMario = superMario;
+        this.monsters = monsters;
+        this.numOfMonsters = 1;
+        this.sizeOfMonsterQueue = sizeOfMonsterQueue;
+        this.monster_1 = monsters.remove(0);
+    }
+
+    public int fight(){
+        int numKilled = 0;
+        if( this.superMario.strength >= this.monster_1.strength && this.superMario.agility >= this.monster_1.agility
+                && this.superMario.intelligence >= this.monster_1.intelligence)
+            numKilled ++;
+        return numKilled;
+    }
+}
+
+class Fight1vs2 extends Fight1vs1 {
+    public Monster monster_2;
+    public Fight1vs2(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
+        super(superMario, monsters, sizeOfMonsterQueue);
+        this.numOfMonsters = 2;
+        this.monster_2 = monsters.remove(0);
+    }
+
+    public int fight(){
+        int numKilled = super.fight();
+        if( this.superMario.strength >= this.monster_2.strength && this.superMario.agility >= this.monster_2.agility
+                && this.superMario.intelligence >= this.monster_2.intelligence)
+            numKilled ++;
+        return numKilled;
+    }
+}
+
+
+class Fight1vs3 extends Fight1vs2 {
+    public Monster monster_3;
+    public Fight1vs3(SuperMario superMario,  ArrayList<Monster> monsters, int sizeOfMonsterQueue){
+        super(superMario, monsters, sizeOfMonsterQueue);
+        this.numOfMonsters = 3;
+        this.monster_3 = monsters.remove(0);
+    }
+
+    public int fight(){
+        int numKilled = super.fight();
+        if( this.superMario.strength >= this.monster_3.strength && this.superMario.agility >= this.monster_3.agility
+                && this.superMario.intelligence >= this.monster_3.intelligence)
+            numKilled ++;
+        return numKilled;
+    }
+
+}
+

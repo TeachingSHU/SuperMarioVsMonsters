@@ -3,7 +3,7 @@
  @email: lundechen@shu.edu.cn
  */
 
-package com.company.supermario;
+package supermario;
 
 import java.util.ArrayList;
 import java.util.Scanner;
